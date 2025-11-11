@@ -46,3 +46,7 @@ Consiste en una aplicación web creada con Django, que simula una tienda online 
 1. Clonar el repositorio:
    ```bash
    git clone https://github.com/augustojpaganini/TuPrimeraPagina-Paganini.git
+
+## SuperUsuario
+- Usuario: Profe
+- Contraseña: 12345
