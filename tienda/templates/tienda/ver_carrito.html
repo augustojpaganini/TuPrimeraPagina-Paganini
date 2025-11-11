@@ -1,0 +1,20 @@
+{% extends 'tienda/base.html' %}
+{% block content %}
+
+<h2>🛒 Tu Carrito</h2>
+
+{% if camisetas %}
+  <ul>
+    {% for c in camisetas %}
+      <li>
+        <img src="{{ c.foto_frente.url }}" width="100" style="border-radius:5px;">
+        {{ c.jugador }} ({{ c.equipo.nombre }}) — ${{ c.precio }}
+        <a href="{% url 'eliminar_del_carrito' c.id %}" style="margin-left:10px;">Eliminar</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Tu carrito está vacío 😢</p>
+{% endif %}
+
+{% endblock %}

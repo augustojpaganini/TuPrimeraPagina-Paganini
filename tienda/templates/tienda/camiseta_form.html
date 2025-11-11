@@ -1,0 +1,92 @@
+{% extends 'tienda/base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f7f9fb;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 30px;
+    }
+
+    .catalogo {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 20px;
+    }
+
+    .tarjeta {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        overflow: hidden;
+    }
+
+    .tarjeta:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .tarjeta img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        border-bottom: 1px solid #eee;
+    }
+
+    .tarjeta h3 {
+        font-size: 1.2em;
+        color: #34495e;
+        margin: 10px 0 0;
+    }
+
+    .tarjeta p {
+        color: #555;
+        margin: 5px 0;
+    }
+
+    .precio {
+        font-weight: bold;
+        color: #27ae60;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .sin-camisetas {
+        text-align: center;
+        color: #777;
+        font-size: 1.1em;
+        margin-top: 50px;
+    }
+</style>
+
+<h2>🩵 Catálogo de Camisetas Retro</h2>
+
+{% if camisetas %}
+<div class="catalogo">
+    {% for c in camisetas %}
+        <div class="tarjeta">
+            {% if c.foto_frente %}
+                <img src="{{ c.foto_frente.url }}" alt="Foto frente de {{ c.jugador }}">
+            {% else %}
+                <img src="https://via.placeholder.com/300x260?text=Sin+imagen" alt="Sin imagen">
+            {% endif %}
+            <div style="padding: 10px 15px;">
+                <h3>{{ c.jugador }} ({{ c.numero }})</h3>
+                <p><strong>Equipo:</strong> {{ c.equipo.nombre }}</p>
+                <p class="precio">${{ c.precio }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="sin-camisetas">No hay camisetas disponibles 😔</p>
+{% endif %}
+
+{% endblock %}

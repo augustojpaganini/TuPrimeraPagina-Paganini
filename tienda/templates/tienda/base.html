@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🏟️ Tienda de Camisetas Retro</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #ffffff;
+            border-bottom: 2px solid #e0e0e0;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin: 0;
+        }
+
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #27ae60;
+        }
+
+        .buscador {
+            margin-top: 10px;
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        .buscador input {
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 200px;
+        }
+
+        .buscador button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .buscador button:hover {
+            background-color: #219150;
+        }
+
+        main {
+            padding: 30px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            color: #777;
+            font-size: 0.9em;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            margin-top: 50px;
+        }
+
+        .catalogo {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .tarjeta {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            overflow: hidden;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .tarjeta img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tarjeta h3 {
+            font-size: 1.2em;
+            color: #34495e;
+            margin: 10px 0 0;
+        }
+
+        .tarjeta p {
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .precio {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .sin-datos {
+            text-align: center;
+            color: #777;
+            font-size: 1.1em;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🏟️ Tienda de Camisetas Retro</h1>
+    <nav>
+        <a href="{% url 'inicio' %}">Inicio</a>
+        <a href="{% url 'lista_camisetas' %}">Camisetas</a>
+        <a href="{% url 'lista_equipos' %}">Equipos</a>
+        <a href="{% url 'cliente' %}">Clientes</a>
+    </nav>
+
+    <form action="{% url 'buscar_camisetas' %}" method="get" class="buscador">
+        <input type="text" name="consulta" placeholder="Buscar camisetas...">
+        <button type="submit">Buscar</button>
+    </form>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    © 2025 Tienda Retro | Proyecto Django
+</footer>
+
+</body>
+</html>

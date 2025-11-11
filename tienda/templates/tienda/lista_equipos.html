@@ -1,0 +1,22 @@
+{% extends 'tienda/base.html' %}
+
+{% block content %}
+<h2>Catálogo de Equipos</h2>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+  {% for e in equipos %}
+    <div style="border: 1px solid #ccc; border-radius: 10px; padding: 15px; width: 220px; text-align: center;">
+      <h3>{{ e.nombre }}</h3>
+      <p><strong>País:</strong> {{ e.pais }}</p>
+
+      {% if e.escudo %}
+        <a href="{% url 'camisetas_por_equipo' e.slug %}">
+          <img src="{{ e.escudo.url }}" alt="Escudo {{ e.nombre }}" style="max-width: 150px;">
+        </a>
+      {% endif %}
+    </div>
+  {% empty %}
+    <p>No hay equipos cargados 😅</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'tienda/base.html' %}
+
+{% block content %}
+<h2>👕 Camisetas de {{ equipo.nombre }}</h2>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+  {% for c in camisetas %}
+    <div style="border: 1px solid #ccc; border-radius: 10px; padding: 15px; width: 250px;">
+      <h3>{{ c.jugador }} ({{ c.numero }})</h3>
+      <p><strong>Equipo:</strong> {{ c.equipo.nombre }}</p>
+      <p><strong>Precio:</strong> ${{ c.precio }}</p>
+
+      {% if c.foto_frente %}
+        <img src="{{ c.foto_frente.url }}" alt="Foto frente" style="width:200px; border-radius: 10px;">
+      {% endif %}
+
+      {% if c.foto_espalda %}
+        <img src="{{ c.foto_espalda.url }}" alt="Foto espalda" style="width:200px; border-radius: 10px;">
+      {% endif %}
+
+      <br>
+      <a href="{% url 'agregar_al_carrito' c.id %}" class="btn btn-primary">Agregar al carrito 🛒</a>
+    </div>
+  {% empty %}
+    <p>No hay camisetas disponibles para este equipo 😔</p>
+  {% endfor %}
+</div>
+{% endblock %}

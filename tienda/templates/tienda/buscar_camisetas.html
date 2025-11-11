@@ -1,0 +1,33 @@
+{% extends 'tienda/base.html' %}
+
+{% block content %}
+<h2>Buscar camisetas</h2>
+
+<form method="get" style="margin-bottom: 20px;">
+    {{ form.as_p }}
+    <button type="submit">Buscar</button>
+</form>
+
+{% if camisetas %}
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        {% for c in camisetas %}
+            <div style="border: 1px solid #ccc; border-radius: 10px; padding: 15px; width: 250px;">
+                <h3>{{ c.jugador }} ({{ c.numero }})</h3>
+                <p><strong>Equipo:</strong> {{ c.equipo.nombre }}</p>
+                <p><strong>Precio:</strong> ${{ c.precio }}</p>
+
+                {% if c.foto_frente %}
+                    <img src="{{ c.foto_frente.url }}" alt="Foto frente" style="width: 200px; display:block; margin-bottom: 8px;">
+                {% endif %}
+                {% if c.foto_espalda %}
+                    <img src="{{ c.foto_espalda.url }}" alt="Foto espalda" style="width: 200px;">
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    {% if form.is_bound %}
+        <p>No se encontraron camisetas para esa búsqueda 😕</p>
+    {% endif %}
+{% endif %}
+{% endblock %}
